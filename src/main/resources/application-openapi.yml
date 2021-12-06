@@ -1,0 +1,26 @@
+
+spring:
+  config:
+    activate:
+      on-profile: "!real"
+
+springdoc:
+  packages-to-scan: com.closememo.autotag.controller
+  paths-to-match: /auto-tag/**
+  swagger-ui:
+    path: /auto-tag/swagger-ui.html
+  api-docs:
+    path: /auto-tag/api-docs
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: real
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false

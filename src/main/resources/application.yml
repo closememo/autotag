@@ -1,0 +1,11 @@
+
+spring:
+  application:
+    name: mailsender
+  profiles:
+    active: local
+    include: openapi, secret
+
+server:
+  port: 10084
+  shutdown: graceful
