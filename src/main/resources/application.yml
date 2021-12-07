@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: mailsender
+    name: autotag
   profiles:
     active: local
     include: actuator, openapi, secret
