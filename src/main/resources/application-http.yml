@@ -1,0 +1,44 @@
+http:
+  rest-template:
+    configs:
+      default:
+        read-timeout: 3000
+        connection-timeout: 1000
+        max-connection-count: 30
+        max-connection-per-route: 30
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+http:
+  command:
+    root-uri: http://localhost:10081
+    token: ${DEV_COMMAND_SYSTEM_KEY}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+http:
+  command:
+    root-uri: http://dev-closememo-command.default.svc.cluster.local:10081
+    token: ${DEV_COMMAND_SYSTEM_KEY}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: real
+
+http:
+  command:
+    root-uri: http://closememo-command.default.svc.cluster.local:10081
+    token: ${COMMAND_SYSTEM_KEY}

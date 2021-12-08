@@ -4,7 +4,7 @@ spring:
     name: autotag
   profiles:
     active: local
-    include: actuator, kafka, openapi, secret
+    include: actuator, http, kafka, logging, openapi, secret
 
 server:
   port: 10084
