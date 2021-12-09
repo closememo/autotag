@@ -1,9 +1,13 @@
 package com.closememo.autotag.config.messaging.integration;
 
+import static org.reflections.scanners.Scanners.SubTypes;
+
 import com.closememo.autotag.config.messaging.kafka.KafkaMessageConverter;
 import com.closememo.autotag.infra.messaging.DomainEvent;
 import java.util.Set;
 import org.reflections.Reflections;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +29,10 @@ public class IntegrationConfig {
   private final Set<Class<? extends DomainEvent>> domainEvents;
 
   public IntegrationConfig() {
-    Reflections reflections = new Reflections("com.closememo.autotag.infra.messaging");
+    Reflections reflections = new Reflections(new ConfigurationBuilder()
+        .setUrls(ClasspathHelper.forClass(DomainEvent.class))
+        .setScanners(SubTypes));
+
     domainEvents = reflections.getSubTypesOf(DomainEvent.class);
   }
 
