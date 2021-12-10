@@ -12,10 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DocumentCreatedEvent extends DomainEvent {
 
+  private static final long serialVersionUID = -2596696461879430265L;
+
   private Identifier documentId;
   private Identifier ownerId;
   private String title;
   private String content;
   private List<String> tags;
   private ZonedDateTime createdAt;
+  private DocumentOption option;
 }

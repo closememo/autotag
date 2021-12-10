@@ -26,6 +26,10 @@ public class DocumentDomainEventHandler {
 
   @ServiceActivator(inputChannel = "DocumentCreatedEvent")
   public void handle(DocumentCreatedEvent payload) {
+    if (!payload.getOption().isHasAutoTag()) {
+      return;
+    }
+
     List<String> autoTags = autoTagService.getAutoTags(payload.getContent());
 
     if (CollectionUtils.isNotEmpty(autoTags)) {
@@ -35,6 +39,10 @@ public class DocumentDomainEventHandler {
 
   @ServiceActivator(inputChannel = "DocumentUpdatedEvent")
   public void handle(DocumentUpdatedEvent payload) {
+    if (!payload.getOption().isHasAutoTag()) {
+      return;
+    }
+
     List<String> autoTags = autoTagService.getAutoTags(payload.getContent());
 
     if (CollectionUtils.isNotEmpty(autoTags)) {

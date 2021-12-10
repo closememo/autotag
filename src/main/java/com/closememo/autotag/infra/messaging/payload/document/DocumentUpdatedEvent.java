@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DocumentUpdatedEvent extends DomainEvent {
 
+  private static final long serialVersionUID = 128520692309901884L;
+
   private Identifier documentId;
   private Identifier ownerId;
   private String title;
@@ -19,4 +21,6 @@ public class DocumentUpdatedEvent extends DomainEvent {
   private String content;
   private List<String> tags;
   private ZonedDateTime updatedAt;
+  private DocumentOption previousOption;
+  private DocumentOption option;
 }
